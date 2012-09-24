@@ -39,6 +39,4 @@ setup(name='truck',
     author_email='gabriel@yipit.com',
     url='http://github.com/Yipit/truck',
     packages=get_packages(),
-    install_requires=[
-    ],
 )

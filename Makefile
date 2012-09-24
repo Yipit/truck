@@ -21,7 +21,7 @@ clean:
 
 release: clean test publish
 	@printf "Exporting to $(filename)... "
-	@tar czf $(filename) truck setup.py README.md COPYING
+	@tar czf $(filename) truck setup.py README.md COPYING version.py
 	@echo "DONE!"
 
 publish:
