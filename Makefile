@@ -1,10 +1,9 @@
 all: install_deps test
 
-filename=truck-`python -c 'from version import version; print version'`.tar.gz
-
 export PYTHONPATH:=  ${PWD}:${PWD}/tests/resources
 export DJANGO_SETTINGS_MODULE:= tests.settings
 
+filename=truck-`python -c 'from truck import version; print version'`.tar.gz
 install_deps:
 	@pip install -r requirements.txt
 
@@ -21,7 +20,7 @@ clean:
 
 release: clean test publish
 	@printf "Exporting to $(filename)... "
-	@tar czf $(filename) truck setup.py README.md COPYING version.py
+	@tar czf $(filename) truck setup.py README.md COPYING
 	@echo "DONE!"
 
 publish:

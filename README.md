@@ -1,4 +1,4 @@
-## truck - 0.1.0
+## truck - 0.1.2
 [![Build Status](https://secure.travis-ci.org/Yipit/truck.png)](http://travis-ci.org/Yipit/truck)
 
 Truck is an event bus layer on top of django signals.

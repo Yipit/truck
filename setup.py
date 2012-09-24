@@ -19,7 +19,9 @@
 
 
 import os
-from version import version
+os.environ['DJANGO_SETTINGS_MODULE'] = 'setup'
+
+from truck import version
 from setuptools import setup
 
 
