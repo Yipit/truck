@@ -1,2 +1,0 @@
-TESTING = False
-ACCEPTANCE_TESTING = False
