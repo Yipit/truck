@@ -1,4 +1,4 @@
-## truck
+## truck - 0.1.0
 [![Build Status](https://secure.travis-ci.org/Yipit/truck.png)](http://travis-ci.org/Yipit/truck)
 
 Truck is an event bus layer on top of django signals.
@@ -63,9 +63,9 @@ from django.db.models.signals import post_save
 from your_django_app.models import Profile
 
 
-@receiver(post_save, sender=User)
+@receiver(post_save)
 def create_profile(sender, instance=None, **kwargs):
-    if instance:
+    if isinstance(instance, User):
         profile, created = Profile.objects.get_or_create(user=instance)
 
 ```
@@ -91,11 +91,11 @@ your tests.
 
 ### settings/production.py
 
-TESTING = False
+    TESTING = False
 
 ### settings/testing.py
 
-TESTING = True
+    TESTING = True
 
 
 # License: LGPL3

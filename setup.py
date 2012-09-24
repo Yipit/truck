@@ -19,7 +19,7 @@
 
 
 import os
-from sure import version
+from version import version
 from setuptools import setup
 
 
