@@ -40,6 +40,5 @@ setup(name='truck',
     url='http://github.com/gabrielfalcao/sure',
     packages=get_packages(),
     install_requires=[
-          'Django>=1.4.1',
     ],
 )
