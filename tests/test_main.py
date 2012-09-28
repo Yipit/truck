@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # This file is part of truck
 # <truck - test-friendly event bus layer on top of django signals>
@@ -16,28 +17,11 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-version = '0.1.3'
-
-import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'setup'
-
-from setuptools import setup
+from sure import expect
+from setup import version as setup_version
+from truck import version as core_version
 
 
-def get_packages():
-    # setuptools can't do the job :(
-    packages = []
-    for root, dirnames, filenames in os.walk('truck'):
-        if '__init__.py' in filenames:
-            packages.append(".".join(os.path.split(root)).strip("."))
-
-    return packages
-
-setup(name='truck',
-    version=version,
-    description='test-friendly event bus layer on top of django signals',
-    author=u'Gabriel Falcao',
-    author_email='gabriel@yipit.com',
-    url='http://github.com/Yipit/truck',
-    packages=get_packages(),
-)
+def test_version_matches():
+    ("the version in setup.py and in the core module should match")
+    expect(core_version).to.equal(setup_version)
