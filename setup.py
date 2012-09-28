@@ -33,11 +33,12 @@ def get_packages():
 
     return packages
 
-setup(name='truck',
-    version=version,
-    description='test-friendly event bus layer on top of django signals',
-    author=u'Gabriel Falcao',
-    author_email='gabriel@yipit.com',
-    url='http://github.com/Yipit/truck',
-    packages=get_packages(),
-)
+if __name__ == '__main__':
+    setup(name='truck',
+        version=version,
+        description='test-friendly event bus layer on top of django signals',
+        author=u'Gabriel Falcao',
+        author_email='gabriel@yipit.com',
+        url='http://github.com/Yipit/truck',
+        packages=get_packages(),
+    )
