@@ -42,6 +42,17 @@ def test_conf_no_testing_var(settings):
 
 
 @patch('truck.conf.settings')
+def test_conf_testing_var_none(settings):
+    ("truck should not disable listeners the testing is None")
+
+    # Given that I'm not in the testing environment
+    setattr(settings, 'TESTING', None)
+
+    # When I query the conf submodule
+    conf.LISTENERS_OFF_BY_DEFAULT.should.be.false
+
+
+@patch('truck.conf.settings')
 def test_conf_testing_unit(settings):
     ("truck should not disable listeners when not testing")
 

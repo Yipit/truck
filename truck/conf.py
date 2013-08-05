@@ -26,6 +26,6 @@ from django.conf import settings
 # in the settings module;
 LISTENERS_OFF_BY_DEFAULT = type('Flag', (), {
     '__nonzero__': lambda self: (
-        getattr(settings, 'TESTING', 'off') not in ('off', 'acceptance',)
+        getattr(settings, 'TESTING', None) not in (None, 'acceptance')
     )
 })()
