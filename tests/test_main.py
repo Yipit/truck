@@ -17,11 +17,47 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+from mock import patch
 from sure import expect
 from setup import version as setup_version
 from truck import version as core_version
+
+from truck import conf
 
 
 def test_version_matches():
     ("the version in setup.py and in the core module should match")
     expect(core_version).to.equal(setup_version)
+
+
+@patch('truck.conf.settings')
+def test_conf_no_testing_var(settings):
+    ("truck should not disable listeners when not testing")
+
+    # Given that I'm not in the testing environment
+    delattr(settings, 'TESTING')
+
+    # When I query the conf submodule
+    conf.LISTENERS_OFF_BY_DEFAULT.should.be.false
+
+
+@patch('truck.conf.settings')
+def test_conf_testing_unit(settings):
+    ("truck should not disable listeners when not testing")
+
+    # Given that I'm not in the testing environment
+    setattr(settings, 'TESTING', 'unit')
+
+    # When I query the conf submodule
+    conf.LISTENERS_OFF_BY_DEFAULT.should.be.true
+
+
+@patch('truck.conf.settings')
+def test_conf_testing_acceptance(settings):
+    ("truck should not disable listeners on acceptance tests")
+
+    # Given that I'm not in the testing environment
+    setattr(settings, 'TESTING', 'acceptance')
+
+    # When I query the conf submodule
+    conf.LISTENERS_OFF_BY_DEFAULT.should.be.false

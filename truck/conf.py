@@ -20,6 +20,12 @@
 
 from django.conf import settings
 
-LISTENERS_OFF_BY_DEFAULT = (
-    getattr(settings, 'TESTING', False)
-    and not getattr(settings, 'ACCEPTANCE_TESTING', False))
+
+# This guy over here is not only a settings variable, it's a lazy retriever of
+# the `TESTING` var. Everytime you call this symbol, it will perform a lookup
+# in the settings module;
+LISTENERS_OFF_BY_DEFAULT = type('Flag', (), {
+    '__nonzero__': lambda self: (
+        getattr(settings, 'TESTING', 'off') not in ('off', 'acceptance',)
+    )
+})()
