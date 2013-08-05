@@ -16,29 +16,22 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 version = '0.1.3'
 
 import os
+from setuptools import setup, find_packages
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'setup'
 
-from setuptools import setup
-
-
-def get_packages():
-    # setuptools can't do the job :(
-    packages = []
-    for root, dirnames, filenames in os.walk('truck'):
-        if '__init__.py' in filenames:
-            packages.append(".".join(os.path.split(root)).strip("."))
-
-    return packages
 
 if __name__ == '__main__':
-    setup(name='truck',
+    setup(
+        name='truck',
         version=version,
         description='test-friendly event bus layer on top of django signals',
         author=u'Gabriel Falcao',
         author_email='gabriel@yipit.com',
         url='http://github.com/Yipit/truck',
-        packages=get_packages(),
+        packages=find_packages(exclude=['*tests*']),
     )
