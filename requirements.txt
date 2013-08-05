@@ -4,3 +4,5 @@ nose>=1.2.1
 mock>=1.0b1
 steadymark>=0.4.3
 sure>=1.0.6
+coverage==3.6
+rednose==0.3

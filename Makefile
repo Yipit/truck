@@ -9,7 +9,7 @@ install_deps:
 
 test:
 	@echo "running python tests..."
-	@nosetests --verbosity=2 tests
+	@nosetests -sv --with-coverage --cover-package=truck --rednose --verbosity=2 tests
 	@echo "running documentation examples..."
 	@steadymark README.md
 
